@@ -1,0 +1,151 @@
+﻿<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f4f0e8">
+  <meta name="description" content="英语精读第一大题选词填空专项训练，覆盖6个单元317个重点词。">
+  <title>Wordloom · 精读选词填空</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#home" aria-label="返回首页">
+      <span class="brand-mark">W</span>
+      <span><strong>Wordloom</strong><small>精读词汇练习室</small></span>
+    </a>
+    <nav aria-label="主要导航">
+      <button class="nav-link active" data-view="home">概览</button>
+      <button class="nav-link" data-view="cards">背词卡</button>
+      <button class="nav-link" data-view="practice">填空练习</button>
+      <button class="nav-link" data-view="mock">模拟考试</button>
+      <button class="nav-link" data-view="library">词库</button>
+    </nav>
+    <button class="icon-button" id="sound-toggle" type="button" aria-pressed="true" title="关闭发音">◖))</button>
+  </header>
+
+  <main>
+    <section class="view active" id="view-home">
+      <div class="hero" id="home">
+        <div class="hero-copy">
+          <p class="eyebrow">INTENSIVE READING · CLOZE TRAINER</p>
+          <h1>把 317 个重点词，<br><em>织进真正记得住的语境。</em></h1>
+          <p class="hero-lead">围绕精读考试第一大题设计：先读懂中文，再回到课文原句中准确写出目标词。所有记录只保存在本机浏览器。</p>
+          <div class="hero-actions">
+            <button class="button primary" data-go="practice">开始今日练习 <span>→</span></button>
+            <button class="button secondary" data-go="cards">先背一组词</button>
+          </div>
+        </div>
+        <aside class="hero-card">
+          <div class="hero-card-top"><span>本次词库</span><strong>6</strong><small>UNITS</small></div>
+          <div class="hero-number">317</div>
+          <p>个高频、易考词汇<br>均来自课文语境</p>
+          <div class="mini-progress"><i id="hero-progress"></i></div>
+          <small id="hero-progress-label">尚未开始</small>
+        </aside>
+      </div>
+
+      <div class="stats-grid">
+        <article><span class="stat-icon coral">✓</span><div><small>已练习</small><strong id="stat-seen">0</strong><span>/ 317 词</span></div></article>
+        <article><span class="stat-icon blue">★</span><div><small>已掌握</small><strong id="stat-mastered">0</strong><span>个词</span></div></article>
+        <article><span class="stat-icon gold">↻</span><div><small>待复习</small><strong id="stat-review">0</strong><span>个错词</span></div></article>
+        <article><span class="stat-icon green">◎</span><div><small>练习正确率</small><strong id="stat-accuracy">—</strong><span id="stat-answers">0 次作答</span></div></article>
+      </div>
+
+      <section class="content-section">
+        <div class="section-heading">
+          <div><p class="eyebrow">YOUR SYLLABUS</p><h2>六个单元，逐篇攻克</h2></div>
+          <p>点击任一单元，直接进入该课专项训练。</p>
+        </div>
+        <div class="unit-grid" id="unit-grid"></div>
+      </section>
+
+      <section class="workflow">
+        <div class="workflow-copy"><p class="eyebrow light">THE EXAM LOOP</p><h2>不是孤零零背词，<br>而是练会“看到句意，写出那个词”。</h2></div>
+        <ol>
+          <li><span>01</span><div><strong>读中文</strong><p>先抓住整句含义和语境。</p></div></li>
+          <li><span>02</span><div><strong>判词形</strong><p>观察空格位置，判断词性与形式。</p></div></li>
+          <li><span>03</span><div><strong>写答案</strong><p>拼写完整目标词，再即时订正。</p></div></li>
+        </ol>
+      </section>
+    </section>
+
+    <section class="view" id="view-cards">
+      <div class="page-head">
+        <div><p class="eyebrow">FLASHCARDS</p><h1>先把词义和语境连起来</h1><p>看英文猜中文，也可以切换为看中文回忆英文。</p></div>
+        <div class="filter-row"><label>单元<select id="card-unit"></select></label><button class="chip active" id="card-direction">英文 → 中文</button></div>
+      </div>
+      <div class="study-layout">
+        <aside class="session-panel">
+          <p class="eyebrow">THIS ROUND</p><strong id="card-round">01 / 20</strong>
+          <div class="vertical-progress"><i id="card-progress"></i></div>
+          <small>每轮随机抽取 20 个词</small>
+          <button class="text-button" id="shuffle-cards">重新抽取</button>
+        </aside>
+        <div class="flashcard-wrap">
+          <button class="flashcard" id="flashcard" type="button" aria-label="翻转词卡">
+            <span class="card-unit" id="card-unit-label"></span>
+            <span class="speak-word" id="card-speak">◖))</span>
+            <div class="card-main" id="card-front"></div>
+            <div class="card-answer" id="card-back" hidden></div>
+            <small class="flip-note" id="flip-note">点击卡片查看答案</small>
+          </button>
+          <div class="grade-row">
+            <button class="grade again" data-grade="again"><span>再练</span><small>没想起来</small></button>
+            <button class="grade unsure" data-grade="unsure"><span>模糊</span><small>差一点</small></button>
+            <button class="grade know" data-grade="know"><span>掌握</span><small>很确定</small></button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="view" id="view-practice">
+      <div class="page-head compact">
+        <div><p class="eyebrow">CONTEXT CLOZE</p><h1>课文原句填空</h1><p>根据中文句意，在空格中写出课文重点词。</p></div>
+        <div class="filter-row"><label>单元<select id="practice-unit"></select></label><label class="switch-label"><input type="checkbox" id="mistakes-only"><span></span>只练错题</label></div>
+      </div>
+      <div class="practice-shell">
+        <div class="question-top"><span id="practice-count">第 1 题</span><div class="question-stats"><span>本轮 <b id="practice-score">0 / 0</b></span><span>连对 <b id="practice-streak">0</b></span></div></div>
+        <article class="question-card">
+          <div class="context-label">中文句意</div>
+          <blockquote id="practice-chinese"></blockquote>
+          <div class="context-label">课文原句</div>
+          <p class="cloze-sentence" id="practice-sentence"></p>
+          <p class="meaning-hint" id="practice-meaning"></p>
+          <form id="practice-form">
+            <label for="practice-input">你的答案</label>
+            <div class="answer-line"><input id="practice-input" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="Type the missing word…"><button class="button primary" type="submit">检查答案</button></div>
+          </form>
+          <div class="feedback" id="practice-feedback" aria-live="polite"></div>
+          <div class="question-actions"><button class="text-button" id="letter-hint" type="button">给我一个字母提示</button><button class="button dark" id="practice-next" type="button" hidden>下一题 →</button></div>
+        </article>
+      </div>
+    </section>
+
+    <section class="view" id="view-mock">
+      <div class="page-head compact"><div><p class="eyebrow">MOCK EXAM</p><h1>十题限时模拟</h1><p>从所选范围随机抽题，中途不显示答案，交卷后统一订正。</p></div></div>
+      <div class="mock-setup" id="mock-setup">
+        <div class="setup-card"><span>01</span><h3>选择范围</h3><select id="mock-unit"></select></div>
+        <div class="setup-card"><span>02</span><h3>考试时间</h3><div class="segmented"><button class="active" data-minutes="8">8 分钟</button><button data-minutes="12">12 分钟</button><button data-minutes="0">不限时</button></div></div>
+        <div class="setup-card accent"><span>03</span><h3>准备好了？</h3><p>共 10 题，每题 10 分。答案不区分大小写。</p><button class="button primary" id="start-mock">开始考试 →</button></div>
+      </div>
+      <div class="mock-paper" id="mock-paper" hidden>
+        <div class="paper-head"><div><small>INTENSIVE READING</small><h2>Vocabulary Cloze · Mock Test</h2></div><div class="timer" id="mock-timer">08:00</div></div>
+        <form id="mock-form"><div id="mock-questions"></div><button class="button primary submit-exam" type="submit">交卷并查看结果</button></form>
+      </div>
+      <div class="mock-result" id="mock-result" hidden></div>
+    </section>
+
+    <section class="view" id="view-library">
+      <div class="page-head compact"><div><p class="eyebrow">WORD LIBRARY</p><h1>全部 317 个重点词</h1><p>搜索英文、中文释义或课文原句。</p></div></div>
+      <div class="library-tools"><div class="search-box">⌕<input id="library-search" type="search" placeholder="搜索单词、释义或例句…"></div><select id="library-unit"></select><button class="chip" id="starred-filter">☆ 只看收藏</button></div>
+      <div class="library-count" id="library-count"></div>
+      <div class="library-list" id="library-list"></div>
+    </section>
+  </main>
+
+  <footer><span>Wordloom · 精读第一大题专项</span><span>数据来源：《精读课文重点词汇 · 选词填空备考版》</span></footer>
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
